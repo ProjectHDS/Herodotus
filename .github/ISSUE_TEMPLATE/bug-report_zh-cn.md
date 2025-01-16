@@ -3,7 +3,7 @@ name: BUG反馈
 about: 反馈一个BUG
 title: "[BUG]"
 labels: bug
-assignees: friendlyhj, GBLodb, ikexing-cn
+assignees: GBLodb
 
 ---
 

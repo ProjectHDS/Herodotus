@@ -3,7 +3,6 @@
         {
             "cachedName": "LWJGL 2",
             "cachedVersion": "2.9.4-nightly-20150209",
-            "cachedVolatile": true,
             "dependencyOnly": true,
             "uid": "org.lwjgl",
             "version": "2.9.4-nightly-20150209"

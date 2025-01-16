@@ -3,7 +3,7 @@ name: 添加特性
 about: 请求添加一个新特性
 title: "[ENHANCEMENT]"
 labels: enhancement
-assignees: friendlyhj, GBLodb, ikexing-cn, Lubang-SF
+assignees: GBLodb, Lubang-SF
 
 ---
 

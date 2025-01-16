@@ -3,7 +3,7 @@ name: Feature Request
 about: Suggest an idea for this project
 title: "[ENHANCEMENT]"
 labels: enhancement
-assignees: friendlyhj, GBLodb, ikexing-cn, Lubang-SF
+assignees: GBLodb, Lubang-SF
 
 ---
 
