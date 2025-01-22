@@ -4,6 +4,7 @@ side = 'both'
 x-prismlauncher-loaders = [ 'forge' ]
 x-prismlauncher-mc-versions = [ '1.12.2' ]
 x-prismlauncher-release-type = 'release'
+x-prismlauncher-version-number = 'Storage Drawers-1.12-5.5.3'
 
 [download]
 hash = '8be312005dc837372bfbe2dfb8db77822d326062'

@@ -1,16 +1,17 @@
-filename = 'ThaumicAugmentation-1.12.2-2.1.13.jar'
+filename = 'ThaumicAugmentation-1.12.2-2.1.14.jar'
 name = 'Thaumic Augmentation'
 side = 'both'
 x-prismlauncher-loaders = [ 'forge' ]
 x-prismlauncher-mc-versions = [ '1.12.2' ]
-x-prismlauncher-release-type = 'beta'
+x-prismlauncher-release-type = 'release'
+x-prismlauncher-version-number = 'ThaumicAugmentation-1.12.2-2.1.14.jar'
 
 [download]
-hash = 'c1fc5803ba619ab36edf7420d764b91b7d72d7f9'
+hash = '376843864b9b7c117d4aa98c24c227a76b2d4fde'
 hash-format = 'sha1'
 mode = 'metadata:curseforge'
 url = ''
 
 [update.curseforge]
-file-id = 5129455
+file-id = 6047659
 project-id = 319441

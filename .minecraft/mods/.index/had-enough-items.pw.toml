@@ -4,6 +4,7 @@ side = 'both'
 x-prismlauncher-loaders = [ 'forge' ]
 x-prismlauncher-mc-versions = [ '1.12.2' ]
 x-prismlauncher-release-type = 'release'
+x-prismlauncher-version-number = 'HadEnoughItems_1.12.2-4.26.2.jar'
 
 [download]
 hash = '4e3f8aab2511779983615909692549d38fb118e7'

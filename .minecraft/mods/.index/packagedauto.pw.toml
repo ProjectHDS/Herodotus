@@ -1,16 +1,17 @@
-filename = 'PackagedAuto-1.12.2-1.0.15.57.jar'
+filename = 'PackagedAuto-1.12.2-1.0.15.58.jar'
 name = 'PackagedAuto'
 side = 'both'
 x-prismlauncher-loaders = [ 'forge' ]
 x-prismlauncher-mc-versions = [ '1.12.2' ]
 x-prismlauncher-release-type = 'release'
+x-prismlauncher-version-number = '1.12.2-1.0.15.58'
 
 [download]
-hash = 'f1b35b04ec050b801e3b4aec1b7fe51cab8a9ff3'
+hash = 'dbb74608102156679ceb9eff14d94109e54f3ae3'
 hash-format = 'sha1'
 mode = 'metadata:curseforge'
 url = ''
 
 [update.curseforge]
-file-id = 5975649
+file-id = 6028154
 project-id = 308380

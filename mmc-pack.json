@@ -1,18 +1,19 @@
 {
     "components": [
         {
-            "cachedName": "LWJGL 2",
-            "cachedVersion": "2.9.4-nightly-20150209",
+            "cachedName": "LWJGL 3",
+            "cachedVersion": "3.3.4-27-CLEANROOM",
+            "cachedVolatile": true,
             "dependencyOnly": true,
-            "uid": "org.lwjgl",
-            "version": "2.9.4-nightly-20150209"
+            "uid": "org.lwjgl3",
+            "version": "3.3.1"
         },
         {
             "cachedName": "Minecraft",
             "cachedRequires": [
                 {
-                    "suggests": "2.9.4-nightly-20150209",
-                    "uid": "org.lwjgl"
+                    "suggests": "3.3.1",
+                    "uid": "org.lwjgl3"
                 }
             ],
             "cachedVersion": "1.12.2",
@@ -21,16 +22,15 @@
             "version": "1.12.2"
         },
         {
-            "cachedName": "Forge",
+            "cachedName": "Cleanroom",
             "cachedRequires": [
                 {
                     "equals": "1.12.2",
                     "uid": "net.minecraft"
                 }
             ],
-            "cachedVersion": "14.23.5.2860",
-            "uid": "net.minecraftforge",
-            "version": "14.23.5.2860"
+            "cachedVersion": "0.2.4-alpha",
+            "uid": "net.minecraftforge"
         }
     ],
     "formatVersion": 1
