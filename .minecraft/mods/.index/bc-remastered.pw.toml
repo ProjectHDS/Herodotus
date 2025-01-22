@@ -1,0 +1,16 @@
+filename = 'buildcraft-remastered-main-8.0.9.jar'
+name = 'BC remastered'
+side = 'both'
+x-prismlauncher-loaders = [ 'forge' ]
+x-prismlauncher-mc-versions = [ '1.12.2' ]
+x-prismlauncher-release-type = 'release'
+
+[download]
+hash = '758f7cc5a7d66fea6c1dc04193c0442929a2969b'
+hash-format = 'sha1'
+mode = 'metadata:curseforge'
+url = ''
+
+[update.curseforge]
+file-id = 5880716
+project-id = 892913
