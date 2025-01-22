@@ -109,6 +109,7 @@ item.contenttweaker.honor_weave_silk.name=Honor Weave Silk
 item.contenttweaker.spirituality_weave_silk.name=Spirituality Weave Silk
 item.contenttweaker.secret_arts_ingot.name=Secret Arts Ingot
 item.contenttweaker.portable_instant_void.name=Portable Instant Void
+item.contenttweaker.tiangong.name=Tiangong
 
 tile.contenttweaker.altar.name=Sun-Moon Altar
 tile.contenttweaker.starlight_frame.name=Starlight Frame

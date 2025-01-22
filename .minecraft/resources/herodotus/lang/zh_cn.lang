@@ -393,3 +393,6 @@ herodotus.quests.bd826b1a.text.1=红色矿石与方形矿石伴生。
 herodotus.quests.2250867c.title=food
 herodotus.quests.8d9933a0.title=chiselBlock
 herodotus.quests.c9f1480d.title=隐藏任务
+
+# Tooltips
+herodotus.tooltips.tiangong="物自天生, 工开于人"

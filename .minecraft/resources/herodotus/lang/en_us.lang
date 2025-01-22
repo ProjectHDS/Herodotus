@@ -391,3 +391,6 @@ herodotus.quests.bd826b1a.text.1=Red Ores spawn with Rhombus Ores.
 herodotus.quests.2250867c.title=food
 herodotus.quests.8d9933a0.title=chiselBlock
 herodotus.quests.c9f1480d.title=Hidden Chapter
+
+# Tooltips
+herodotus.tooltips.tiangong="Things are born in nature, work is begun by man."

@@ -108,6 +108,7 @@ item.contenttweaker.honor_weave_silk.name=荣誉织丝
 item.contenttweaker.spirituality_weave_silk.name=灵魂织丝
 item.contenttweaker.secret_arts_ingot.name=秘术锭
 item.contenttweaker.portable_instant_void.name=即食便携虚空
+item.contenttweaker.tiangong.name=天工
 
 tile.contenttweaker.altar.name=日月祭坛
 tile.contenttweaker.starlight_frame.name=星光框架

@@ -8,6 +8,7 @@ import mods.contenttweaker.Color;
 import scripts.hds_lib.cotlib.plainItemIDs;
 import scripts.grassUtils.CotUtils;
 
+
 static christenerColors as int[string] = {
     "longarms": 0x8b0000,
     "bolster": 0xffb5c5,
@@ -85,6 +86,11 @@ arl.register();
 var seed = VanillaFactory.createItem("basic_vis_seed");
 seed.textureLocation = ResourceLocation.create("thaumadditions:items/vis_seeds_0");
 seed.register();
+
+var tg = VanillaFactory.crecreateItemateExpandItem("tiangong");
+tg.rarity = "EPIC";
+tg.maxStackSize = 1;
+tg.register();
 
 for name, color in christenerColors {
     val item = VanillaFactory.createItem("belial_christener_" ~ name);

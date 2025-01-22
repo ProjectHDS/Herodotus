@@ -118,6 +118,21 @@ static toRemoveArcaneRecipes as [IItemStack] = [
     <thaumadditions:jar_thaumium>
 ];
 
+// For extra added blocks, DO NOT use unless under special conditions, use getDecoBlocks() instead.
+static decoBlocks as IItemStack[] = [
+    <minecraft:dirt>,
+    <minecraft:stone>
+];
+
+function getDecoBlocks() as IItemStack[] {
+    var toReturn as IItemStack[] = [];
+    for chiselItem in loadedMods["chisel"].items as IItemStack {
+        if chiselItem.isItemBlock {toReturn += chiselItem};
+    }
+    toReturn += decoBlocks;
+    return toReturn;
+}
+
 function getAllBasicAspects(amount as int) as CTAspectStack[] {
     return [
         <aspect:aer> * amount,
