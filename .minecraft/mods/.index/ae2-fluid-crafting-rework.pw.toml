@@ -1,9 +1,10 @@
 filename = 'Fluid Craft for AE2-2.6.6-r.jar'
-name = 'AE2 Fluid Crafting'
+name = 'AE2 Fluid Crafting Rework'
 side = 'both'
 x-prismlauncher-loaders = [ 'forge' ]
 x-prismlauncher-mc-versions = [ '1.12.2' ]
 x-prismlauncher-release-type = 'release'
+x-prismlauncher-version-number = 'Fluid Craft for AE2-2.6.6-r.jar'
 
 [download]
 hash = '7b6a06c6396428a94e83a0adce263d1731dc090c'

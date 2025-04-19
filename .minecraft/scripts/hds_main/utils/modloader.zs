@@ -1,4 +1,4 @@
-#loader crafttweaker multiblocked
+#loader crafttweaker multiblocked gregtech
 #priority 1145141
 
 static isInvalid as bool = false;

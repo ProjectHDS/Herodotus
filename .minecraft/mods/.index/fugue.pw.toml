@@ -1,17 +1,17 @@
-filename = '+Fugue-1.12.2-0.17.7.jar'
+filename = '+Fugue-1.12.2-0.18.2.jar'
 name = 'Fugue'
 side = 'both'
 x-prismlauncher-loaders = [ 'forge' ]
 x-prismlauncher-mc-versions = [ '1.12.2' ]
 x-prismlauncher-release-type = 'release'
-x-prismlauncher-version-number = '+Fugue-1.12.2-0.17.7.jar'
+x-prismlauncher-version-number = '+Fugue-1.12.2-0.18.2.jar'
 
 [download]
-hash = '95a2852444c4ac797ddad5f78b19ed5ecb32b627'
+hash = '02ed85d96cbde3b438ae6c821be9f5d35fb56b4f'
 hash-format = 'sha1'
 mode = 'metadata:curseforge'
 url = ''
 
 [update.curseforge]
-file-id = 6220209
+file-id = 6278969
 project-id = 1005815

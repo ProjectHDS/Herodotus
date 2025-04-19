@@ -2,11 +2,11 @@
     "components": [
         {
             "cachedName": "LWJGL 3",
-            "cachedVersion": "3.3.4-27-CLEANROOM",
+            "cachedVersion": "3.3.6",
             "cachedVolatile": true,
             "dependencyOnly": true,
             "uid": "org.lwjgl3",
-            "version": "3.3.1"
+            "version": "3.3.6"
         },
         {
             "cachedName": "Minecraft",
@@ -29,8 +29,9 @@
                     "uid": "net.minecraft"
                 }
             ],
-            "cachedVersion": "0.2.4-alpha",
-            "uid": "net.minecraftforge"
+            "cachedVersion": "0.3.0-alpha",
+            "uid": "net.minecraftforge",
+            "version": "0.3.0-alpha"
         }
     ],
     "formatVersion": 1

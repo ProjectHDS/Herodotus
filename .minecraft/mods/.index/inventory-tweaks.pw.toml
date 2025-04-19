@@ -4,6 +4,7 @@ side = 'both'
 x-prismlauncher-loaders = []
 x-prismlauncher-mc-versions = [ '1.12.2' ]
 x-prismlauncher-release-type = 'alpha'
+x-prismlauncher-version-number = 'Inventory Tweaks 1.64+dev.151'
 
 [download]
 hash = '3ba1e59a5109f3e94a4a0170877006b72fa77b1e'
