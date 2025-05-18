@@ -1,16 +1,17 @@
-filename = 'WrapFix-1.3.5-beta.jar'
+filename = 'WrapFix-1.3.6-shadow.jar'
 name = 'WrapFix'
-side = 'both'
+side = 'client'
 x-prismlauncher-loaders = [ 'forge' ]
 x-prismlauncher-mc-versions = [ '1.12.2' ]
 x-prismlauncher-release-type = 'release'
+x-prismlauncher-version-number = 'WrapFix-1.3.6-shadow.jar'
 
 [download]
-hash = '6ed99fc8eba9c958522966a0cf36168e95bbdc47'
+hash = 'eacdc5da64a25afe2ca6825b0849754503880869'
 hash-format = 'sha1'
 mode = 'metadata:curseforge'
 url = ''
 
 [update.curseforge]
-file-id = 5636744
+file-id = 6311190
 project-id = 576946

@@ -1,17 +1,17 @@
-filename = 'RailwayDepotWorker-1.8.0+build.20.jar'
+filename = 'RailwayDepotWorker-1.9.2+build.23.jar'
 name = 'Railway Depot Worker'
 side = 'both'
 x-prismlauncher-loaders = [ 'forge' ]
 x-prismlauncher-mc-versions = [ '1.12.2' ]
 x-prismlauncher-release-type = 'release'
-x-prismlauncher-version-number = 'RailwayDepotWorker-1.8.0+build.20.jar'
+x-prismlauncher-version-number = 'RailwayDepotWorker-1.9.2+build.23.jar'
 
 [download]
-hash = '52d102902c94ecf375e24982d36280fd3bc42429'
+hash = '1fba10790244c69e896a4ab2dd2481728472686e'
 hash-format = 'sha1'
 mode = 'metadata:curseforge'
 url = ''
 
 [update.curseforge]
-file-id = 6302281
+file-id = 6492533
 project-id = 1031521

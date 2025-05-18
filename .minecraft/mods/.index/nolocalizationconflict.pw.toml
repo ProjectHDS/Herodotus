@@ -1,16 +1,17 @@
-filename = 'NoLocalizationConflict-1.4.jar'
+filename = 'NoLocalizationConflict-1.3.jar'
 name = 'No Localization Conflict'
 side = 'both'
-x-prismlauncher-loaders = [ 'forge' ]
+x-prismlauncher-loaders = []
 x-prismlauncher-mc-versions = [ '1.12.2' ]
 x-prismlauncher-release-type = 'release'
+x-prismlauncher-version-number = 'NoLocalizationConflict-1.3.jar'
 
 [download]
-hash = 'b5ae11fca57a493d5cd5a0aa5c4f81e354758998'
+hash = 'b890e41dcfd8407079b78a62ebc2f550528f0ac1'
 hash-format = 'sha1'
 mode = 'metadata:curseforge'
 url = ''
 
 [update.curseforge]
-file-id = 4890406
+file-id = 4205587
 project-id = 621966
