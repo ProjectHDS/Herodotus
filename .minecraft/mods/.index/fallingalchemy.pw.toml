@@ -1,0 +1,16 @@
+filename = 'fallingalchemy-1.2.0.jar'
+name = 'FallingAlchemy'
+side = 'both'
+x-prismlauncher-loaders = [ 'forge' ]
+x-prismlauncher-mc-versions = [ '1.12.2' ]
+x-prismlauncher-release-type = 'release'
+
+[download]
+hash = 'ae9bf96a491c4fa6bbac229517d2202c3e77c6fc'
+hash-format = 'sha1'
+mode = 'metadata:curseforge'
+url = ''
+
+[update.curseforge]
+file-id = 6543081
+project-id = 1268372
