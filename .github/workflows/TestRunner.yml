@@ -7,8 +7,7 @@ on:
   #   branches: [develop]
 
 jobs:
-  TestRunnerClient:
-    if: "!endsWith(github.event.head_commit.message, 'NORUNNER')"
+  TestRunner:
     runs-on: ubuntu-latest
     steps:
       - name: Cancel Previous Runs
@@ -19,128 +18,34 @@ jobs:
 
       - uses: actions/checkout@v2
 
+      - uses: prefix-dev/setup-pixi@v0.8.10
+        with:
+          pixi-version: v0.48.2
+          cache: true
+
       - name: Set up JDK 1.8
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v4
         with:
-          java-version: 1.8
+          java-version: 8
+          distribution: 'zulu'
 
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v1
+      - name: Restore assets
+        id: runner-download-cache-restore
+        uses: actions/cache/restore@v4
         with:
-          dotnet-version: 6.0.x
+          path: |
+            OpenJDK21U-jdk_x64_linux_hotspot_21.0.7_6.tar.gz
+            gml-linux.gz
+          key: ${{ runner.os }}-runner-download-cache
 
-      - name: Build Downloader
-        run: dotnet publish ${GITHUB_WORKSPACE}/runners/CurseforgeDownloader/CurseforgeDownloader/CurseforgeDownloader.csproj -c Release -o ${GITHUB_WORKSPACE}/ -r linux-x64 -p:PublishSingleFile=true
+      - name: Run game test
+        run: pixi run test-modpack
 
-      - name: Download GML
-        run: |
-          mkdir ${GITHUB_WORKSPACE}/gml
-          wget https://github.com/xmdhs/gomclauncher/releases/download/v1.3.9/gml-linux.gz -O ${GITHUB_WORKSPACE}/gml/gml-linux.gz
-
-      - name: Unzip GML
-        run: gzip -d ${GITHUB_WORKSPACE}/gml/gml-linux.gz
-
-      - name: Grant Permission for GML
-        run: |
-          sudo chmod +x ${GITHUB_WORKSPACE}/gml/gml-linux
-
-      - name: Download Minecraft 1.12.2
-        run: |
-          cd gml
-          sudo ./gml-linux -downver 1.12.2 -type "vanilla" -independent=f
-
-      - name: Enable Hard fail Script
-        run: sudo mv ${GITHUB_WORKSPACE}/.minecraft/scripts/hardfail.zs.disabled ${GITHUB_WORKSPACE}/.minecraft/scripts/hardfail.zs
-
-      - name: Load Modpack Stuff
-        run: sudo mv ${GITHUB_WORKSPACE}/.minecraft/* ${GITHUB_WORKSPACE}/gml/.minecraft/
-
-      - name: Set launcher_profiles.json
-        run: sudo bash ${GITHUB_WORKSPACE}/runners/set_launcher_profiles.sh
-
-      - name: Download Forge 14.23.5.2860 Installer
-        run: sudo wget https://files.minecraftforge.net/maven/net/minecraftforge/forge/1.12.2-14.23.5.2860/forge-1.12.2-14.23.5.2860-installer.jar -O ${GITHUB_WORKSPACE}/gml/forge-1.12.2-14.23.5.2860-installer.jar
-
-      - name: Download Forge Install Bootstrapper
-        run: |
-          wget https://github.com/bangbang93/forge-install-bootstrapper/releases/download/v0.1.0/forge-install-bootstrapper.jar -O ${GITHUB_WORKSPACE}/gml/forge-install-bootstrapper.jar
-
-      - name: Install Forge 14.23.5.2860
-        run: |
-          cd gml
-          sudo java -cp "forge-install-bootstrapper.jar:forge-1.12.2-14.23.5.2860-installer.jar" com.bangbang93.ForgeInstaller ./.minecraft/
-
-      - name: Run Downloader
-        run: |
-          chmod +x ${GITHUB_WORKSPACE}/CurseforgeDownloader
-          ${GITHUB_WORKSPACE}/CurseforgeDownloader --api-key '${{ secrets.OVERWOLF_API_KEY }}' --mod-folder-path './gml/.minecraft/mods' --black-list '454215'
-
-      - name: Install Autostop
-        run: sudo mv ${GITHUB_WORKSPACE}/runners/autostop-1.0.jar ${GITHUB_WORKSPACE}/gml/.minecraft/mods
-
-      - name: Tweak configs
-        run: | 
-          sudo mv -f ${GITHUB_WORKSPACE}/runners/thaumicjei.cfg ${GITHUB_WORKSPACE}/gml/.minecraft/config
-          sudo mv -f ${GITHUB_WORKSPACE}/runners/tinkersoredictcache.cfg ${GITHUB_WORKSPACE}/gml/.minecraft/config
-
-      - name: Run modpack
-        run: |
-          cd ./gml
-          sudo xvfb-run ./gml-linux -run 1.12.2-forge-14.23.5.2860 -username tester -ram 6144 -log -independent=f -javapath ${JAVA_HOME_8_X64}/bin/java
-    
-  # TestRunnerServer:
-  #   if: "!endsWith(github.event.head_commit.message, 'NORUNNER')"
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Cancel Previous Runs
-  #       if: ${{ github.event_name == 'push' }}
-  #       uses: styfle/cancel-workflow-action@0.9.0
-  #       with: 
-  #         access_token: ${{ secrets.ACTION_TOKEN }}
-
-  #     - uses: actions/checkout@v2
-  #     - name: Set up JDK 1.8
-  #       uses: actions/setup-java@v1
-  #       with:
-  #         java-version: 1.8
-
-  #     - name: Install server
-  #       run: |
-  #         mkdir ${GITHUB_WORKSPACE}/server
-  #         wget https://maven.minecraftforge.net/net/minecraftforge/forge/1.12.2-14.23.5.2860/forge-1.12.2-14.23.5.2860-installer.jar -O ${GITHUB_WORKSPACE}/server/forge-1.12.2-14.23.5.2860-installer.jar
-  #         cd ./server
-  #         sudo java -jar forge-1.12.2-14.23.5.2860-installer.jar --installServer
-  #         sudo rm forge-1.12.2-14.23.5.2860-installer.jar
-  #         sudo rm forge-1.12.2-14.23.5.2860-installer.jar.log
-
-  #     - name: Setup server files
-  #       run: |
-  #         mv ${GITHUB_WORKSPACE}/.minecraft/mods ${GITHUB_WORKSPACE}/server/
-  #         mv ${GITHUB_WORKSPACE}/.minecraft/config ${GITHUB_WORKSPACE}/server/
-  #         mv ${GITHUB_WORKSPACE}/.minecraft/scripts ${GITHUB_WORKSPACE}/server/
-  #         mv ${GITHUB_WORKSPACE}/.minecraft/resources ${GITHUB_WORKSPACE}/server/
-  #         mv ${GITHUB_WORKSPACE}/.minecraft/icon.png ${GITHUB_WORKSPACE}/server/
-  #         mv ${GITHUB_WORKSPACE}/runners/server/start.bat ${GITHUB_WORKSPACE}/server/
-  #         mv ${GITHUB_WORKSPACE}/runners/server/start.sh ${GITHUB_WORKSPACE}/server/
-
-  #     - name: Download Modpack Downloader CLI
-  #       run: |
-  #         mkdir ${GITHUB_WORKSPACE}/downloader
-  #         wget https://github.com/Nincraft/ModPackDownloader/releases/download/0.6.1/ModpackDownloader-cli-0.6.1.jar -O ${GITHUB_WORKSPACE}/downloader/ModpackDownloader-cli-0.6.1.jar
-
-  #     - name: Download Mods
-  #       run: sudo ${JAVA_HOME_11_X64}/bin/java -jar ${GITHUB_WORKSPACE}/downloader/ModpackDownloader-cli-0.6.1.jar -manifest ${GITHUB_WORKSPACE}/manifest.json -folder ${GITHUB_WORKSPACE}/server/mods
-
-  #     - name: Install Autostop
-  #       run: sudo mv ${GITHUB_WORKSPACE}/runners/autostop-1.0.jar ${GITHUB_WORKSPACE}/server/mods
-
-  #     - name: Tweak configs
-  #       run: | 
-  #         sudo mv -f ${GITHUB_WORKSPACE}/runners/thaumicjei.cfg ${GITHUB_WORKSPACE}/server/config
-  #         sudo mv -f ${GITHUB_WORKSPACE}/runners/tinkersoredictcache.cfg ${GITHUB_WORKSPACE}/server/config
-
-  #     - name: Run Server
-  #       run: |
-  #         sudo mv -f ${GITHUB_WORKSPACE}/runners/server/eula.txt ${GITHUB_WORKSPACE}/server/
-  #         cd ./server
-  #         sudo ${JAVA_HOME_8_X64}/bin/java -server -Xms4000M -Xmx6000M -jar forge-1.12.2-14.23.5.2860.jar nogui
+      - name: Save assets
+        id: runner-download-cache-save
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            OpenJDK21U-jdk_x64_linux_hotspot_21.0.7_6.tar.gz
+            gml-linux.gz
+          key: ${{ steps.runner-download-cache-restore.outputs.cache-primary-key }}

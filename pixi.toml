@@ -13,25 +13,45 @@ extra-index-urls = ["https://mirrors.ustc.edu.cn/pypi/simple"]
 tweak-configs = { depends-on = [
     "tweak-thaumicjei",
     "tweak-tinkersoredictcache",
+    "tweak-relauncher"
 ] }
-setup-gml = { cmd = "echo 'Setup GML'" }
+setup-gml = { cmd = "chmod +x ./gml/gml-linux", depends-on = [
+    "prepare-gml",
+    "download-gml",
+    "unzip-gml",
+] }
+setup-forge = { cmd = 'java -cp "forge-install-bootstrapper.jar:forge-1.12.2-14.23.5.2860-installer.jar" com.bangbang93.ForgeInstaller ./.minecraft/', cwd = "gml", depends-on = [
+    "download-forge-installer",
+    "download-forge-bootstrapper",
+] }
+setup-jdk = { cmd = "chmod +x ./jdk-21.0.7+6/bin/java", depends-on = [
+    "download-jdk",
+    "unzip-jdk",
+] }
 
 [tasks.test-modpack]
-cmd = "echo 'Test Modpack'"
+cmd = "xvfb-run ./gml-linux -run 1.12.2-forge-14.23.5.2860 -username tester -ram 6144 -log -independent=f -javapath $JAVA_HOME_8_X64/bin/java"
+cwd = "gml"
 args = [
     { "arg" = "cf_token", "default" = "wtf" },
     { "arg" = "dir", "default" = "./mods" },
     { "arg" = "index", "default" = "./.minecraft/mods/.index" },
 ]
 depends-on = [
+    "setup-jdk",
     "setup-gml",
+    "download-minecraft",
     "enable-hard-fail-script",
     "setup-modpack",
+    "set-profile",
+    "setup-forge",
     { "task" = "download-mods", "args" = [
         "{{ cf_token }}",
         "{{ dir }}",
-        "{{ index }}"
-    ] }
+        "{{ index }}",
+    ] },
+    "enable-autostop",
+    "tweak-configs"
 ]
 
 [tasks.enable-hard-fail-script]
@@ -67,6 +87,44 @@ cmd = [
 
 [tasks.setup-modpack]
 cmd = ["mv", "./.minecraft/*", "./gml/.minecraft/"]
+
+[tasks.prepare-gml]
+cmd = "mkdir ./gml"
+
+[tasks.download-gml]
+cmd = "curl -o ./gml/gml-linux.gz https://github.com/xmdhs/gomclauncher/releases/download/v1.5.1/gml-linux.gz"
+outputs = ["gml-linux.gz"]
+
+[tasks.unzip-gml]
+cmd = "gzip -d ./gml/gml-linux.gz"
+
+[tasks.download-minecraft]
+cmd = './gml-linux -downver 1.12.2 -type "vanilla" -independent=f'
+cwd = "gml"
+
+[tasks.download-forge-installer]
+cmd = 'curl -o forge-1.12.2-14.23.5.2860-installer.jar https://files.minecraftforge.net/maven/net/minecraftforge/forge/1.12.2-14.23.5.2860/forge-1.12.2-14.23.5.2860-installer.jar'
+cwd = "gml"
+
+[tasks.download-forge-bootstrapper]
+cmd = 'curl -o forge-install-bootstrapper.jar https://github.com/bangbang93/forge-install-bootstrapper/releases/download/v0.1.0/forge-install-bootstrapper.jar'
+cwd = "gml"
+
+[tasks.download-jdk]
+cmd = "curl -o OpenJDK21U-jdk_x64_linux_hotspot_21.0.7_6.tar.gz https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.7%2B6/OpenJDK21U-jdk_x64_linux_hotspot_21.0.7_6.tar.gz"
+outputs = ["OpenJDK21U-jdk_x64_linux_hotspot_21.0.7_6.tar.gz"]
+
+[tasks.unzip-jdk]
+cmd = "tar -xzf OpenJDK21U-jdk_x64_linux_hotspot_21.0.7_6.tar.gz"
+
+[tasks.set-profile]
+cmd = 'echo "{\"selectedProfile\": \"(Default)\",\"profiles\": {\"(Default)\": {\"name\": \"(Default)\"}},\"clientToken\": \"88888888-8888-8888-8888-888888888888\"}" > ./gml/.minecraft/launcher_profiles.json'
+
+[tasks.enable-relauncher]
+cmd = ["mv", "./runners/cleanroom-relauncher-0.2.6.jar", "./gml/.minecraft/mods"]
+[tasks.tweak-relauncher]
+cmd = 'echo "{\"selectedVersion\":\"0.3.4-alpha\",\"latestVersion\":\"0.3.4-alpha\",\"javaPath\":\"$(pwd)/jdk-21.0.7+6/bin/java\"}" > ./gml/.minecraft/config/relauncher.json'
+depends-on = ["enable-relauncher"]
 
 [dependencies]
 python = "3.12.*"
