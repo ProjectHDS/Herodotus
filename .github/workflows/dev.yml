@@ -1,7 +1,7 @@
 name: dev
 on:
-  push:
-    branches: [release, develop]
+  # push:
+  #   branches: [release, develop]
   workflow_dispatch:
 env:
   BUILD: Herodotus
