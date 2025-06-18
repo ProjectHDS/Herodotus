@@ -97,7 +97,7 @@ class CurseForgeDownloader:
             return False
 
     async def download_single_mod(
-        self, mod, folder: Path, semaphore: asyncio.Semaphore, pbar: tqdm
+        self, mod: Mod, folder: Path, semaphore: asyncio.Semaphore, pbar: tqdm
     ) -> bool:
         """
         Download a single mod from Mod object

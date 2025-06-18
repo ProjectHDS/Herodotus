@@ -9,6 +9,31 @@ version = "0.1.0"
 index-url = "https://pypi.org/simple"
 extra-index-urls = ["https://mirrors.ustc.edu.cn/pypi/simple"]
 
+[tasks]
+tweak-configs = { depends-on = [
+    "tweak-thaumicjei",
+    "tweak-tinkersoredictcache",
+] }
+setup-gml = { cmd = "echo 'Setup GML'" }
+
+[tasks.test-modpack]
+cmd = "echo 'Test Modpack'"
+args = [
+    { "arg" = "cf_token", "default" = "wtf" },
+    { "arg" = "dir", "default" = "./mods" },
+    { "arg" = "index", "default" = "./.minecraft/mods/.index" },
+]
+depends-on = [
+    "setup-gml",
+    "enable-hard-fail-script",
+    "setup-modpack",
+    { "task" = "download-mods", "args" = [
+        "{{ cf_token }}",
+        "{{ dir }}",
+        "{{ index }}"
+    ] }
+]
+
 [tasks.enable-hard-fail-script]
 cmd = [
     "mv",
@@ -16,7 +41,7 @@ cmd = [
     "./.minecraft/scripts/hardfail.zs",
 ]
 
-[tasks.download_mods]
+[tasks.download-mods]
 args = [
     { "arg" = "cf_token", "default" = "wtf" },
     { "arg" = "dir", "default" = "./mods" },
@@ -26,6 +51,22 @@ args = [
 ]
 cmd = "python runners/download_mods.py '{{ cf_token }}' {{ dir }} {{ index }} {{ side }} {{ black_list }}"
 
+[tasks.enable-autostop]
+cmd = ["mv", "./runners/autostop-1.0.jar", "./gml/.minecraft/mods"]
+
+[tasks.tweak-thaumicjei]
+cmd = ["mv", "-f", "./runners/thaumicjei.cfg", "./gml/.minecraft/config"]
+
+[tasks.tweak-tinkersoredictcache]
+cmd = [
+    "mv",
+    "-f",
+    "./runners/tinkersoredictcache.cfg",
+    "./gml/.minecraft/config",
+]
+
+[tasks.setup-modpack]
+cmd = ["mv", "./.minecraft/*", "./gml/.minecraft/"]
 
 [dependencies]
 python = "3.12.*"
