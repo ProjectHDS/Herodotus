@@ -41,7 +41,7 @@ jobs:
           key: ${{ runner.os }}-runner-download-cache
 
       - name: Run game test
-        run: pixi run test-modpack
+        run: pixi run test-modpack '${{ secrets.CF_TOKEN }}' ./gml/mods ./gml/.minecraft/mods/.index 
 
       - name: Save assets
         id: runner-download-cache-save

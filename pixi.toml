@@ -107,7 +107,7 @@ cmd = 'wget --output-document=forge-1.12.2-14.23.5.2860-installer.jar https://fi
 cwd = "gml"
 
 [tasks.download-forge-bootstrapper]
-cmd = 'wget --output-document=forge-install-bootstrapper.jar https://github.com/bangbang93/forge-install-bootstrapper/releases/download/v0.1.0/forge-install-bootstrapper.jar'
+cmd = 'wget --output-document=forge-install-bootstrapper.jar https://github.com/bangbang93/forge-install-bootstrapper/releases/download/v0.3.0/forge-install-bootstrapper.jar'
 cwd = "gml"
 
 [tasks.download-jdk]
