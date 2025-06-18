@@ -1,0 +1,20 @@
+[workspace]
+authors = ["baka-gourd <36119339+baka-gourd@users.noreply.github.com>"]
+channels = ["conda-forge"]
+name = "Herodotus"
+platforms = ["win-64", "linux-64"]
+version = "0.1.0"
+
+[pypi-options]
+index-url = "https://pypi.org/simple"
+extra-index-urls = ["https://mirrors.ustc.edu.cn/pypi/simple"]
+
+[tasks]
+al = { cmd = "python runners/false.py" }
+b = { cmd = "python runners/test.py", depends-on = ["al"] }
+
+[dependencies]
+python = "3.12.*"
+
+[pypi-dependencies]
+tqdm = ">=4.67.1, <5"

@@ -90,9 +90,8 @@
 !/.minecraft/mods/.index/*.pw.toml
 !/.minecraft/mods/OpenTerrainGenerator/
 
-# cs file
-/runners/CurseforgeDownloader/CurseforgeDownloader/bin
-/runners/CurseforgeDownloader/CurseforgeDownloader/obj
-/runners/CurseforgeDownloader/.vs/
-/runners/CurseforgeDownloader/.idea/
-/runners/CurseforgeDownloader/CurseforgeDownloader/obj/project.assets.json
+# pixi environments
+.pixi
+*.egg-info
+!pixi.lock
+!pixi.toml
