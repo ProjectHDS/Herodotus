@@ -13,7 +13,7 @@ extra-index-urls = ["https://mirrors.ustc.edu.cn/pypi/simple"]
 tweak-configs = { depends-on = [
     "tweak-thaumicjei",
     "tweak-tinkersoredictcache",
-    "tweak-relauncher"
+    "tweak-relauncher",
 ] }
 setup-gml = { cmd = "chmod +x ./gml/gml-linux", depends-on = [
     "prepare-gml",
@@ -51,7 +51,7 @@ depends-on = [
         "{{ index }}",
     ] },
     "enable-autostop",
-    "tweak-configs"
+    "tweak-configs",
 ]
 
 [tasks.enable-hard-fail-script]
@@ -75,18 +75,21 @@ cmd = "python runners/download_mods.py '{{ cf_token }}' {{ dir }} {{ index }} {{
 cmd = ["mv", "./runners/autostop-1.0.jar", "./gml/.minecraft/mods"]
 
 [tasks.tweak-thaumicjei]
-cmd = ["mv", "-f", "./runners/thaumicjei.cfg", "./gml/.minecraft/config"]
+cmd = [
+    "mv",
+    "./runners/thaumicjei.cfg",
+    "./gml/.minecraft/config/thaumicjei.cfg",
+]
 
 [tasks.tweak-tinkersoredictcache]
 cmd = [
     "mv",
-    "-f",
     "./runners/tinkersoredictcache.cfg",
-    "./gml/.minecraft/config",
+    "./gml/.minecraft/config/tinkersoredictcache.cfg",
 ]
 
 [tasks.setup-modpack]
-cmd = ["mv", "./.minecraft/*", "./gml/.minecraft/"]
+cmd = "python ./runners/setup_modpack.py"
 
 [tasks.prepare-gml]
 cmd = "mkdir ./gml"
@@ -121,7 +124,11 @@ cmd = "tar -xzf OpenJDK21U-jdk_x64_linux_hotspot_21.0.7_6.tar.gz"
 cmd = 'echo "{\"selectedProfile\": \"(Default)\",\"profiles\": {\"(Default)\": {\"name\": \"(Default)\"}},\"clientToken\": \"88888888-8888-8888-8888-888888888888\"}" > ./gml/.minecraft/launcher_profiles.json'
 
 [tasks.enable-relauncher]
-cmd = ["mv", "./runners/cleanroom-relauncher-0.2.6.jar", "./gml/.minecraft/mods"]
+cmd = [
+    "mv",
+    "./runners/cleanroom-relauncher-0.2.6.jar",
+    "./gml/.minecraft/mods",
+]
 [tasks.tweak-relauncher]
 cmd = 'echo "{\"selectedVersion\":\"0.3.4-alpha\",\"latestVersion\":\"0.3.4-alpha\",\"javaPath\":\"$(pwd)/jdk-21.0.7+6/bin/java\"}" > ./gml/.minecraft/config/relauncher.json'
 depends-on = ["enable-relauncher"]

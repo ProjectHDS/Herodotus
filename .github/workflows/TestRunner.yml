@@ -16,7 +16,9 @@ jobs:
         with:
           access_token: ${{ secrets.ACTION_TOKEN }}
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
+        with:
+          submodules: 'true'
 
       - uses: prefix-dev/setup-pixi@v0.8.10
         with:
