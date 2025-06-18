@@ -5,6 +5,7 @@
 
 #repo stuff
 !/.github
+!/.gitattributes
 !/docs
 !/runners
 !/LICENSE
@@ -95,3 +96,4 @@
 *.egg-info
 !pixi.lock
 !pixi.toml
+__pycache__

@@ -9,12 +9,29 @@ version = "0.1.0"
 index-url = "https://pypi.org/simple"
 extra-index-urls = ["https://mirrors.ustc.edu.cn/pypi/simple"]
 
-[tasks]
-al = { cmd = "python runners/false.py" }
-b = { cmd = "python runners/test.py", depends-on = ["al"] }
+[tasks.enable-hard-fail-script]
+cmd = [
+    "mv",
+    "./.minecraft/scripts/hardfail.zs.disabled",
+    "./.minecraft/scripts/hardfail.zs",
+]
+
+[tasks.download_mods]
+args = [
+    { "arg" = "cf_token", "default" = "wtf" },
+    { "arg" = "dir", "default" = "./mods" },
+    { "arg" = "index", "default" = "./.minecraft/mods/.index" },
+    { "arg" = "side", "default" = "both" },
+    { "arg" = "black_list", "default" = "454215" },
+]
+cmd = "python runners/download_mods.py '{{ cf_token }}' {{ dir }} {{ index }} {{ side }} {{ black_list }}"
+
 
 [dependencies]
 python = "3.12.*"
 
 [pypi-dependencies]
 tqdm = ">=4.67.1, <5"
+loguru = ">=0.7.3, <0.8"
+rtoml = ">=0.12.0, <0.13"
+httpx = ">=0.28.1, <0.29"
