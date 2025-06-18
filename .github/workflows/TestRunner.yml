@@ -36,6 +36,8 @@ jobs:
           path: |
             OpenJDK21U-jdk_x64_linux_hotspot_21.0.7_6.tar.gz
             gml-linux.gz
+            forge-install-bootstrapper.jar
+            forge-1.12.2-14.23.5.2860-installer.jar
           key: ${{ runner.os }}-runner-download-cache
 
       - name: Run game test
@@ -48,4 +50,6 @@ jobs:
           path: |
             OpenJDK21U-jdk_x64_linux_hotspot_21.0.7_6.tar.gz
             gml-linux.gz
+            forge-install-bootstrapper.jar
+            forge-1.12.2-14.23.5.2860-installer.jar
           key: ${{ steps.runner-download-cache-restore.outputs.cache-primary-key }}
