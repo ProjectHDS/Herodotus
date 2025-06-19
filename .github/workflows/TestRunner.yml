@@ -13,8 +13,6 @@ jobs:
       - name: Cancel Previous Runs
         if: ${{ github.event_name == 'push' }}
         uses: styfle/cancel-workflow-action@0.12.1
-        with:
-          access_token: ${{ secrets.ACTION_TOKEN }}
 
       - uses: actions/checkout@v4
         with:

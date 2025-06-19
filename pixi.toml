@@ -28,6 +28,7 @@ setup-jdk = { cmd = "chmod +x ./jdk-21.0.7+6/bin/java", depends-on = [
     "download-jdk",
     "unzip-jdk",
 ] }
+build-ftbq-lang = { cmd = "python runners/build_ftbq_lang.py" }
 
 [tasks.test-modpack]
 cmd = "xvfb-run ./gml-linux -run 1.12.2-forge-14.23.5.2860 -username tester -ram 6144 -log -independent=f -javapath $JAVA_HOME_8_X64/bin/java"
