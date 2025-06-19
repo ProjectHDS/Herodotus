@@ -54,6 +54,9 @@ depends-on = [
     "tweak-configs",
 ]
 
+[tasks.enable-hdsu]
+cmd = "find ./hdsu_dev -maxdepth 1 -type f -name '*.jar' ! -name '*-dev.jar' ! -name '*-sources.jar' -exec mv {} ./gml/.minecraft/mods ;"
+
 [tasks.enable-hard-fail-script]
 cmd = [
     "mv",
@@ -100,7 +103,7 @@ outputs = ["gml-linux.gz"]
 cwd = "gml"
 
 [tasks.unzip-gml]
-cmd = "gzip -d ./gml/gml-linux.gz"
+cmd = "gzip -dk ./gml/gml-linux.gz"
 
 [tasks.download-minecraft]
 cmd = './gml-linux -downver 1.12.2 -type "vanilla" -independent=f'
