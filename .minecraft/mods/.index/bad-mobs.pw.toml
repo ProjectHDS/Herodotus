@@ -1,0 +1,17 @@
+filename = 'BadMobs-1.12.2-1.1.40.jar'
+name = 'Bad Mobs'
+side = 'both'
+x-prismlauncher-loaders = [ 'forge' ]
+x-prismlauncher-mc-versions = [ '1.12.2' ]
+x-prismlauncher-release-type = 'release'
+x-prismlauncher-version-number = 'BadMobs-1.12.2-1.1.40.jar'
+
+[download]
+hash = '40c704f9e996fe1c33770d72e29fbb9a3c4f67b2'
+hash-format = 'sha1'
+mode = 'metadata:curseforge'
+url = ''
+
+[update.curseforge]
+file-id = 2810152
+project-id = 233258
