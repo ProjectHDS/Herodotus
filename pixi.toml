@@ -89,14 +89,15 @@ cmd = [
 ]
 
 [tasks.setup-modpack]
-cmd = "python ./runners/setup_modpack.py"
+cmd = "mv ./.minecraft/* ./gml/.minecraft"
 
 [tasks.prepare-gml]
-cmd = "mkdir ./gml"
+cmd = "mkdir -p ./gml"
 
 [tasks.download-gml]
-cmd = "wget --output-document=./gml/gml-linux.gz https://github.com/xmdhs/gomclauncher/releases/download/v1.5.1/gml-linux.gz"
+cmd = "wget --output-document=gml-linux.gz https://github.com/xmdhs/gomclauncher/releases/download/v1.5.1/gml-linux.gz"
 outputs = ["gml-linux.gz"]
+cwd = "gml"
 
 [tasks.unzip-gml]
 cmd = "gzip -d ./gml/gml-linux.gz"
@@ -129,6 +130,7 @@ cmd = [
     "./runners/cleanroom-relauncher-0.2.6.jar",
     "./gml/.minecraft/mods",
 ]
+
 [tasks.tweak-relauncher]
 cmd = 'echo "{\"selectedVersion\":\"0.3.4-alpha\",\"latestVersion\":\"0.3.4-alpha\",\"javaPath\":\"$(pwd)/jdk-21.0.7+6/bin/java\"}" > ./gml/.minecraft/config/relauncher.json'
 depends-on = ["enable-relauncher"]
