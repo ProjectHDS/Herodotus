@@ -4,6 +4,7 @@ side = 'both'
 x-prismlauncher-loaders = []
 x-prismlauncher-mc-versions = [ '1.12.2' ]
 x-prismlauncher-release-type = 'release'
+x-prismlauncher-version-number = 'MekanismTools-1.12.2-9.8.3.390.jar'
 
 [download]
 hash = '8c32f71f2db7a695abc8413aa7dfe8c28c485585'

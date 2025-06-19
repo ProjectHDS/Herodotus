@@ -65,6 +65,7 @@
 *.local
 /.minecraft/config/loliasm.cfg
 /.minecraft/config/JustEnoughCalculation/
+/.minecraft/config/mcp_stable-39-1.12.zip
 
 #other stuff
 !/.minecraft/patchouli_books
@@ -86,6 +87,7 @@
 # utils mod
 !/.minecraft/mods
 /.minecraft/mods/*
+!/.minecraft/mods/hdsutils*.jar
 !/.minecraft/mods/herodotusutils*.jar
 !/.minecraft/mods/.index/
 !/.minecraft/mods/.index/*.pw.toml

@@ -4,6 +4,7 @@ side = 'both'
 x-prismlauncher-loaders = [ 'forge' ]
 x-prismlauncher-mc-versions = [ '1.12.2' ]
 x-prismlauncher-release-type = 'release'
+x-prismlauncher-version-number = 'Fallingalchemy-1.2.0.jar'
 
 [download]
 hash = 'ae9bf96a491c4fa6bbac229517d2202c3e77c6fc'

@@ -1,17 +1,17 @@
-filename = 'nuclearcraft-1.12.2-2o.9.2.jar'
-name = 'NuclearCraft'
+filename = 'SRParasites-1.12.2v1.9.21.jar'
+name = 'Scape and Run: Parasites'
 side = 'both'
 x-prismlauncher-loaders = [ 'forge' ]
 x-prismlauncher-mc-versions = [ '1.12.2' ]
 x-prismlauncher-release-type = 'beta'
-x-prismlauncher-version-number = 'NuclearCraft-1.12.2-2o.9.2'
+x-prismlauncher-version-number = 'SRP v 1.9.21'
 
 [download]
-hash = '9ac730b20fd502bf2d2e966b2100fa334930e069'
+hash = '17225b532334c4652a698be3d41d819af2b0f051'
 hash-format = 'sha1'
 mode = 'metadata:curseforge'
 url = ''
 
 [update.curseforge]
-file-id = 6605808
-project-id = 336895
+file-id = 5370258
+project-id = 348025
