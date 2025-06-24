@@ -140,7 +140,7 @@ cmd = "mkdir -p relauncher"
 # cmd = 'echo "{\"selectedVersion\":\"0.3.4-alpha\",\"latestVersion\":\"0.3.4-alpha\",\"javaPath\":\"$(pwd)/jdk-21.0.7+6/bin/java\"}" > ./gml/.minecraft/config/relauncher.json'
 cmd = "python runners/build_relauncher_cfg.py --java-path $(pwd)/jdk-21.0.7+6/bin/java --library-path $(pwd)/relauncher"
 cwd = "."
-# depends-on = ["enable-relauncher"]
+depends-on = ["enable-relauncher"]
 
 [dependencies]
 python = "3.12.*"
