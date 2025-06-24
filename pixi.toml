@@ -130,15 +130,17 @@ cmd = "tar -xzf OpenJDK21U-jdk_x64_linux_hotspot_21.0.7_6.tar.gz"
 cmd = 'echo "{\"selectedProfile\": \"(Default)\",\"profiles\": {\"(Default)\": {\"name\": \"(Default)\"}},\"clientToken\": \"88888888-8888-8888-8888-888888888888\"}" > ./gml/.minecraft/launcher_profiles.json'
 
 [tasks.enable-relauncher]
-cmd = [
-    "mv",
-    "./runners/cleanroom-relauncher-0.2.6.jar",
-    "./gml/.minecraft/mods",
-]
+cmd = ["mv", "./runners/++relauncher-0.3.11-beta.jar", "./gml/.minecraft/mods"]
+depends-on = ["config-relauncher-dir"]
+
+[tasks.config-relauncher-dir]
+cmd = "mkdir -p relauncher"
 
 [tasks.tweak-relauncher]
-cmd = 'echo "{\"selectedVersion\":\"0.3.4-alpha\",\"latestVersion\":\"0.3.4-alpha\",\"javaPath\":\"$(pwd)/jdk-21.0.7+6/bin/java\"}" > ./gml/.minecraft/config/relauncher.json'
-depends-on = ["enable-relauncher"]
+# cmd = 'echo "{\"selectedVersion\":\"0.3.4-alpha\",\"latestVersion\":\"0.3.4-alpha\",\"javaPath\":\"$(pwd)/jdk-21.0.7+6/bin/java\"}" > ./gml/.minecraft/config/relauncher.json'
+cmd = "python runners/build_relauncher_cfg.py --java-path $(pwd)/jdk-21.0.7+6/bin/java --library-path $(pwd)/relauncher"
+cwd = "."
+# depends-on = ["enable-relauncher"]
 
 [dependencies]
 python = "3.12.*"
@@ -148,3 +150,4 @@ tqdm = ">=4.67.1, <5"
 loguru = ">=0.7.3, <0.8"
 rtoml = ">=0.12.0, <0.13"
 httpx = ">=0.28.1, <0.29"
+minijinja = ">=2.10.2, <3"

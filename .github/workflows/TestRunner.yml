@@ -34,11 +34,7 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           path: |
-            OpenJDK21U-jdk_x64_linux_hotspot_21.0.7_6.tar.gz
-            gml-linux.gz
-            forge-install-bootstrapper.jar
-            forge-1.12.2-14.23.5.2860-installer.jar
-            ~/.cleanroom/relauncher
+            ./relauncher
           key: ${{ runner.os }}-runner-download-cache
 
       - name: Download artifact
@@ -68,9 +64,5 @@ jobs:
         uses: actions/cache/save@v4
         with:
           path: |
-            OpenJDK21U-jdk_x64_linux_hotspot_21.0.7_6.tar.gz
-            gml-linux.gz
-            forge-install-bootstrapper.jar
-            forge-1.12.2-14.23.5.2860-installer.jar
-            ~/.cleanroom/relauncher
+            ./relauncher
           key: ${{ steps.runner-download-cache-restore.outputs.cache-primary-key }}

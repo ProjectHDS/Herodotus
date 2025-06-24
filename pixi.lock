@@ -37,6 +37,7 @@ environments:
       - pypi: https://mirrors.ustc.edu.cn/pypi/packages/2a/39/e50c7c3a983047577ee07d2a9e53faf5a69493943ec3f6a384bdc792deb2/httpx-0.28.1-py3-none-any.whl
       - pypi: https://mirrors.ustc.edu.cn/pypi/packages/76/c6/c88e154df9c4e1a2a66ccf0005a88dfb2650c1dffb6f5ce603dfbd452ce3/idna-3.10-py3-none-any.whl
       - pypi: https://mirrors.ustc.edu.cn/pypi/packages/0c/29/0348de65b8cc732daa3e33e67806420b2ae89bdce2b04af740289c5c6c8c/loguru-0.7.3-py3-none-any.whl
+      - pypi: https://mirrors.ustc.edu.cn/pypi/packages/ae/0d/12c8315eec82253d63d305cf58530146c43bf00d2b5fc93d147c0c1ff6c3/minijinja-2.10.2-cp38-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
       - pypi: https://mirrors.ustc.edu.cn/pypi/packages/d7/67/32b5f4ccb06876eec4bd339dc739e5e0ae30f3494f88012f9d293d265d9e/rtoml-0.12.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
       - pypi: https://mirrors.ustc.edu.cn/pypi/packages/e9/44/75a9c9421471a6c4805dbf2356f7c181a29c1879239abab1ea2cc8f38b40/sniffio-1.3.1-py3-none-any.whl
       - pypi: https://mirrors.ustc.edu.cn/pypi/packages/d0/30/dc54f88dd4a2b5dc8a0279bdd7270e735851848b762aeb1c1184ed1f6b14/tqdm-4.67.1-py3-none-any.whl
@@ -64,6 +65,7 @@ environments:
       - pypi: https://mirrors.ustc.edu.cn/pypi/packages/2a/39/e50c7c3a983047577ee07d2a9e53faf5a69493943ec3f6a384bdc792deb2/httpx-0.28.1-py3-none-any.whl
       - pypi: https://mirrors.ustc.edu.cn/pypi/packages/76/c6/c88e154df9c4e1a2a66ccf0005a88dfb2650c1dffb6f5ce603dfbd452ce3/idna-3.10-py3-none-any.whl
       - pypi: https://mirrors.ustc.edu.cn/pypi/packages/0c/29/0348de65b8cc732daa3e33e67806420b2ae89bdce2b04af740289c5c6c8c/loguru-0.7.3-py3-none-any.whl
+      - pypi: https://mirrors.ustc.edu.cn/pypi/packages/b6/04/46a86fd3d8c6bab6493e4b7aad97cd1f24b35030482bfb654dfcfa965616/minijinja-2.10.2-cp38-abi3-win_amd64.whl
       - pypi: https://mirrors.ustc.edu.cn/pypi/packages/b8/d9/5e6df3255f3eb277a8b6b3c421aba85803d9aa73a9562c50878642b9b300/rtoml-0.12.0-cp312-cp312-win_amd64.whl
       - pypi: https://mirrors.ustc.edu.cn/pypi/packages/e9/44/75a9c9421471a6c4805dbf2356f7c181a29c1879239abab1ea2cc8f38b40/sniffio-1.3.1-py3-none-any.whl
       - pypi: https://mirrors.ustc.edu.cn/pypi/packages/d0/30/dc54f88dd4a2b5dc8a0279bdd7270e735851848b762aeb1c1184ed1f6b14/tqdm-4.67.1-py3-none-any.whl
@@ -444,6 +446,16 @@ packages:
   - build==1.2.2 ; python_full_version >= '3.11' and extra == 'dev'
   - twine==6.0.1 ; python_full_version >= '3.11' and extra == 'dev'
   requires_python: '>=3.5,<4.0'
+- pypi: https://mirrors.ustc.edu.cn/pypi/packages/ae/0d/12c8315eec82253d63d305cf58530146c43bf00d2b5fc93d147c0c1ff6c3/minijinja-2.10.2-cp38-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+  name: minijinja
+  version: 2.10.2
+  sha256: a42e7eb1d5b2d6a128cdc71cd251c503612d2e2752ae31dc85d37ba66417f20f
+  requires_python: '>=3.8'
+- pypi: https://mirrors.ustc.edu.cn/pypi/packages/b6/04/46a86fd3d8c6bab6493e4b7aad97cd1f24b35030482bfb654dfcfa965616/minijinja-2.10.2-cp38-abi3-win_amd64.whl
+  name: minijinja
+  version: 2.10.2
+  sha256: 3dc0a07433b9cc7147e6c8492fa38f7d02eb6bf13ff1cb1db017cb5f89c64539
+  requires_python: '>=3.8'
 - conda: https://conda.anaconda.org/conda-forge/linux-64/ncurses-6.5-h2d0b736_3.conda
   sha256: 3fde293232fa3fca98635e1167de6b7c7fda83caf24b9d6c91ec9eefb4f4d586
   md5: 47e340acb35de30501a76c7c799c41d7
