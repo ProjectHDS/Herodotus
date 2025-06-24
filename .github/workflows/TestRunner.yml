@@ -38,6 +38,7 @@ jobs:
             gml-linux.gz
             forge-install-bootstrapper.jar
             forge-1.12.2-14.23.5.2860-installer.jar
+            ~/.cleanroom/relauncher
           key: ${{ runner.os }}-runner-download-cache
 
       - name: Download artifact
@@ -71,4 +72,5 @@ jobs:
             gml-linux.gz
             forge-install-bootstrapper.jar
             forge-1.12.2-14.23.5.2860-installer.jar
+            ~/.cleanroom/relauncher
           key: ${{ steps.runner-download-cache-restore.outputs.cache-primary-key }}
