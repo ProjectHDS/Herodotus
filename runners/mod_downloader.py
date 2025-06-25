@@ -1,8 +1,9 @@
 import asyncio
 import httpx
+import shutil
 from loguru import logger
 from pathlib import Path
-from typing import Optional, Dict, Any
+from typing import Optional, Dict, Any, Tuple
 from tqdm import tqdm
 
 from mod_index import Mod
@@ -14,9 +15,15 @@ logger.add(lambda msg: tqdm.write(msg, end=""), colorize=True)
 class CurseForgeDownloader:
     """CurseForge mod downloader using httpx and loguru"""
 
-    def __init__(self, api_key: str, base_url: str = "https://api.curseforge.com"):
+    def __init__(
+        self,
+        api_key: str,
+        cache_dir: Path,
+        base_url: str = "https://api.curseforge.com",
+    ):
         self.api_key = api_key
         self.base_url = base_url
+        self.cache_dir = cache_dir
         self.client: Optional[httpx.AsyncClient] = None
 
     async def __aenter__(self) -> "CurseForgeDownloader":
@@ -78,6 +85,44 @@ class CurseForgeDownloader:
             logger.error(f"Error getting download URL for {project_id}/{file_id}: {e}")
             return None
 
+    def get_cache_file_path(self, hash_format: str, hash_value: str) -> Optional[Path]:
+        """Generate cache file path from hash format and value"""
+        if not hash_format or not hash_value:
+            return None
+        return self.cache_dir / f"{hash_format}_{hash_value}"
+
+    def check_cache(self, hash_format: str, hash_value: str) -> Optional[Path]:
+        """Check if file exists in cache and return path if found"""
+        if not hash_format or not hash_value:
+            return None
+
+        cache_path = self.get_cache_file_path(hash_format, hash_value)
+        if cache_path and cache_path.exists():
+            return cache_path
+        return None
+
+    def save_to_cache(self, file_path: Path, hash_format: str, hash_value: str) -> bool:
+        """Save a file to the cache directory"""
+        if not hash_format or not hash_value:
+            return False
+
+        try:
+            cache_path = self.get_cache_file_path(hash_format, hash_value)
+            if not cache_path:
+                return False
+
+            # Make sure cache directory exists
+            self.cache_dir.mkdir(parents=True, exist_ok=True)
+
+            # Copy file to cache if it doesn't already exist there
+            if not cache_path.exists():
+                shutil.copy2(file_path, cache_path)
+                logger.debug(f"Saved to cache: {cache_path.name}")
+            return True
+        except Exception as e:
+            logger.error(f"Error saving to cache: {e}")
+            return False
+
     async def download_file(self, url: str, file_path: Path) -> bool:
         """Download a single file"""
         try:
@@ -131,6 +176,27 @@ class CurseForgeDownloader:
                     pbar.update(1)
                     return True
 
+                # Check if file exists in cache
+                hash_format = mod.download.hash_format
+                hash_value = mod.download.hash
+
+                if hash_format and hash_value:
+                    cache_file = self.check_cache(hash_format, hash_value)
+                    if cache_file:
+                        # Copy from cache instead of downloading
+                        logger.info(f"Found in cache, copying: {mod.filename}")
+                        pbar.set_postfix_str(f"🔄 {mod.filename} (from cache)")
+
+                        try:
+                            shutil.copy2(cache_file, file_path)
+                            pbar.set_postfix_str(f"✓ {mod.filename} (cached)")
+                            logger.success(f"Copied from cache: {mod.name}")
+                            pbar.update(1)
+                            return True
+                        except Exception as e:
+                            logger.error(f"Error copying from cache: {e}")
+                            # Fall through to normal download if cache copy fails
+
                 pbar.set_postfix_str(f"📡 {mod.name}")
                 logger.info(f"Getting download info for: {mod.name}")
 
@@ -150,6 +216,10 @@ class CurseForgeDownloader:
                 if success:
                     pbar.set_postfix_str(f"✓ {mod.filename}")
                     logger.success(f"Downloaded: {mod.name}")
+
+                    # Save to cache if download was successful
+                    if hash_format and hash_value:
+                        self.save_to_cache(file_path, hash_format, hash_value)
                 else:
                     pbar.set_postfix_str(f"✗ {mod.filename}")
 
@@ -172,9 +242,18 @@ async def download_mods_from_list(
     download_directory: str,
     max_concurrent: int = 8,
     blacklist: Optional[list[int]] = None,
+    cache_directory: str = "./download_cache",
 ) -> bool:
     """
     Download mods from a list of Mod objects
+
+    Args:
+        mods: List of Mod objects to download
+        api_key: CurseForge API key
+        download_directory: Directory to save downloaded mods
+        max_concurrent: Maximum number of concurrent downloads
+        blacklist: List of project IDs to skip
+        cache_directory: Directory to use for download cache (defaults to ./download_cache)
     """
 
     if not api_key:
@@ -189,6 +268,11 @@ async def download_mods_from_list(
     folder = Path(download_directory)
     folder.mkdir(parents=True, exist_ok=True)
     logger.info(f"Mods folder: {folder.absolute()}")
+
+    # Setup cache directory
+    cache_dir = Path(cache_directory)
+    cache_dir.mkdir(parents=True, exist_ok=True)
+    logger.info(f"Cache directory: {cache_dir.absolute()}")
 
     # Filter mods that have CurseForge data and are not blacklisted
     blacklist_set = set(blacklist or [])
@@ -219,7 +303,7 @@ async def download_mods_from_list(
     semaphore = asyncio.Semaphore(max_concurrent)
     success_count = 0
 
-    async with CurseForgeDownloader(api_key) as downloader:
+    async with CurseForgeDownloader(api_key, cache_dir) as downloader:
         with tqdm(
             total=len(downloadable_mods),
             desc="Downloading mods",

@@ -36,6 +36,7 @@ jobs:
           path: |
             ./relauncher
             ./gml/.minecraft/assets
+            ./download_cache
           key: ${{ runner.os }}-crl-${{ github.sha }}
           restore-keys: |
             ${{ runner.os }}-crl-
