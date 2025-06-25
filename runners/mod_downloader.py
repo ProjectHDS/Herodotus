@@ -226,6 +226,7 @@ async def download_mods_from_list(
             unit="mod",
             ncols=120,
             bar_format="{l_bar}{bar}| {n_fmt}/{total_fmt} [{elapsed}<{remaining}, {rate_fmt}] {postfix}",
+            disable=None,
         ) as pbar:
             logger.info("Starting downloads...")
 

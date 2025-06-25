@@ -100,7 +100,7 @@ cmd = "mv ./.minecraft/* ./gml/.minecraft"
 cmd = "mkdir -p ./gml"
 
 [tasks.download-gml]
-cmd = "wget --output-document=gml-linux.gz https://github.com/xmdhs/gomclauncher/releases/download/v1.5.1/gml-linux.gz"
+cmd = "wget --no-verbose --output-document=gml-linux.gz https://github.com/xmdhs/gomclauncher/releases/download/v1.5.1/gml-linux.gz"
 outputs = ["gml-linux.gz"]
 cwd = "gml"
 
@@ -112,15 +112,15 @@ cmd = './gml-linux -downver 1.12.2 -type "vanilla" -independent=f'
 cwd = "gml"
 
 [tasks.download-forge-installer]
-cmd = 'wget --output-document=forge-1.12.2-14.23.5.2860-installer.jar https://files.minecraftforge.net/maven/net/minecraftforge/forge/1.12.2-14.23.5.2860/forge-1.12.2-14.23.5.2860-installer.jar'
+cmd = 'wget --no-verbose --output-document=forge-1.12.2-14.23.5.2860-installer.jar https://files.minecraftforge.net/maven/net/minecraftforge/forge/1.12.2-14.23.5.2860/forge-1.12.2-14.23.5.2860-installer.jar'
 cwd = "gml"
 
 [tasks.download-forge-bootstrapper]
-cmd = 'wget --output-document=forge-install-bootstrapper.jar https://github.com/bangbang93/forge-install-bootstrapper/releases/download/v0.3.0/forge-install-bootstrapper.jar'
+cmd = 'wget --no-verbose --output-document=forge-install-bootstrapper.jar https://github.com/bangbang93/forge-install-bootstrapper/releases/download/v0.3.0/forge-install-bootstrapper.jar'
 cwd = "gml"
 
 [tasks.download-jdk]
-cmd = "wget --output-document=OpenJDK21U-jdk_x64_linux_hotspot_21.0.7_6.tar.gz https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.7%2B6/OpenJDK21U-jdk_x64_linux_hotspot_21.0.7_6.tar.gz"
+cmd = "wget --no-verbose --output-document=OpenJDK21U-jdk_x64_linux_hotspot_21.0.7_6.tar.gz https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.7%2B6/OpenJDK21U-jdk_x64_linux_hotspot_21.0.7_6.tar.gz"
 outputs = ["OpenJDK21U-jdk_x64_linux_hotspot_21.0.7_6.tar.gz"]
 
 [tasks.unzip-jdk]
