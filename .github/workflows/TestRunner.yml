@@ -29,13 +29,16 @@ jobs:
           java-version: 8
           distribution: 'zulu'
 
-      - name: Restore assets
-        id: runner-download-cache-restore
-        uses: actions/cache/restore@v4
+      - name: Cache assets
+        id: hit-cache
+        uses: actions/cache@v4
         with:
           path: |
             ./relauncher
-          key: ${{ runner.os }}-runner-download-cache
+            ./gml/.minecraft/assets
+          key: ${{ runner.os }}-crl-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-crl-
 
       - name: Download artifact
         id: download-artifact
@@ -58,11 +61,3 @@ jobs:
 
       - name: Run game test
         run: pixi run test-modpack '${{ secrets.CF_TOKEN }}' ./gml/.minecraft/mods ./gml/.minecraft/mods/.index 
-
-      - name: Save assets
-        id: runner-download-cache-save
-        uses: actions/cache/save@v4
-        with:
-          path: |
-            ./relauncher
-          key: ${{ steps.runner-download-cache-restore.outputs.cache-primary-key }}
