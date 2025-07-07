@@ -41,7 +41,7 @@ static allPartsMap as string[][int] = {
     "bolt", "ingot", "tiny_dust", "gear"
     */
     0 : [// basic metals
-        "dustUnstable", "dustMetastable", "paperAmorphousPrecipitated", "dustGlass", "nugget", "dustTinyGlass"
+        "dustUnstable", "dustMetastable", "paperAmorphousPrecipitated", "dustGlass", "nugget", "dustTinyGlass", "tiny_dust", "small_dust"
     ]
 };
 
