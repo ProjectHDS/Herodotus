@@ -1,17 +1,16 @@
-filename = 'fluidintetweaker-1.5.3.jar'
+filename = 'fluidintetweaker-1.5.4.jar'
 name = 'Fluid Interaction Tweaker'
 side = 'both'
 x-prismlauncher-loaders = [ 'forge' ]
 x-prismlauncher-mc-versions = [ '1.12.2' ]
 x-prismlauncher-release-type = 'release'
-x-prismlauncher-version-number = 'fluidintetweaker-1.5.3.jar'
 
 [download]
-hash = '8b5a111f6599671108ca5ef5a990b2331ec38dc6'
+hash = '71e1bc2c020e22abfa958d07a55dc692a0376986'
 hash-format = 'sha1'
 mode = 'metadata:curseforge'
 url = ''
 
 [update.curseforge]
-file-id = 6624513
+file-id = 6728191
 project-id = 1094214

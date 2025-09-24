@@ -1,16 +1,16 @@
-filename = 'OpenTerrainGenerator-1.12.2-v9.5-R2.jar'
-name = 'Open Terrain Generator (OTG)'
+filename = 'OpenTerrainGenerator-1.12.2-v9.7.jar'
+name = 'Open Terrain Generator'
 side = 'both'
 x-prismlauncher-loaders = [ 'forge' ]
 x-prismlauncher-mc-versions = [ '1.12.2' ]
 x-prismlauncher-release-type = 'release'
 
 [download]
-hash = 'e0b00a4df17dc632a23361a161e8928df6c17fca'
+hash = 'd3aa6998832c1d115b8c2397f0b8c33288642c9e'
 hash-format = 'sha1'
 mode = 'metadata:curseforge'
 url = ''
 
 [update.curseforge]
-file-id = 5286210
+file-id = 7004304
 project-id = 265894

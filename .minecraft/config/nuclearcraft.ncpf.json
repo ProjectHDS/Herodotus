@@ -450,17 +450,17 @@
           }
         },
         {
-          "name": "hot_mercury",
+          "name": "high_pressure_mercury",
           "type": "legacy_fluid",
           "modules": {
             "nuclearcraft:overhaul_turbine:recipe_stats": {
               "output": {
-                "name": "mercury",
+                "name": "exhaust_mercury",
                 "type": "legacy_fluid",
                 "modules": {}
               },
-              "coefficient": 4.0,
-              "power": 1024.0
+              "coefficient": 3.0,
+              "power": 256.0
             }
           }
         }
@@ -489,7 +489,7 @@
               "modules": {}
             },
             {
-              "name": "mercury",
+              "name": "exhaust_mercury",
               "type": "legacy_fluid",
               "modules": {}
             }
@@ -9671,6 +9671,36 @@
               "output_ratio": 1.0
             }
           }
+        },
+        {
+          "name": "mercury",
+          "type": "legacy_fluid",
+          "modules": {
+            "nuclearcraft:overhaul_sfr:coolant_recipe_stats": {
+              "heat": 512,
+              "output": {
+                "name": "high_pressure_mercury",
+                "type": "legacy_fluid",
+                "modules": {}
+              },
+              "output_ratio": 2.0
+            }
+          }
+        },
+        {
+          "name": "hot_mercury",
+          "type": "legacy_fluid",
+          "modules": {
+            "nuclearcraft:overhaul_sfr:coolant_recipe_stats": {
+              "heat": 256,
+              "output": {
+                "name": "high_pressure_mercury",
+                "type": "legacy_fluid",
+                "modules": {}
+              },
+              "output_ratio": 2.0
+            }
+          }
         }
       ],
       "modules": {
@@ -9846,6 +9876,11 @@
             },
             {
               "name": "cryotheum_nak_hot",
+              "type": "legacy_fluid",
+              "modules": {}
+            },
+            {
+              "name": "high_pressure_mercury",
               "type": "legacy_fluid",
               "modules": {}
             },
