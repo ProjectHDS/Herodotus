@@ -1,1 +1,8 @@
-[]
+[
+  {
+    "passive": true,
+    "dimension": 0,
+    "onjoin": true,
+    "result": "deny"
+  }
+]
