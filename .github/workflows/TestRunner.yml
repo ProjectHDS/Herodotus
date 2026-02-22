@@ -61,4 +61,15 @@ jobs:
           use_unzip: false
 
       - name: Run game test
-        run: pixi run test-modpack '${{ secrets.CF_TOKEN }}' ./gml/.minecraft/mods ./gml/.minecraft/mods/.index 
+        run: pixi run test-modpack '${{ secrets.CF_TOKEN }}' ./gml/.minecraft/mods ./gml/.minecraft/mods/.index
+
+      - name: Check crash reports
+        run: |
+          crash_dir="./gml/.minecraft/crash-reports"
+          first_report="$(find "$crash_dir" -type f -print -quit 2>/dev/null || true)"
+
+          if [ -n "$first_report" ]; then
+            echo "::error::Minecraft crash reports were generated during test run."
+            find "$crash_dir" -type f -print
+            exit 1
+          fi
