@@ -31,7 +31,7 @@ class CurseForgeDownloader:
         headers = {
             "x-api-key": self.api_key,
             "Accept": "application/json",
-            "User-Agent": "Python-CurseForge-Downloader/2.0",
+            "User-Agent": "PrismLauncher/10.0.2",
         }
 
         limits = httpx.Limits(max_keepalive_connections=20, max_connections=100)
@@ -184,7 +184,7 @@ class CurseForgeDownloader:
                     cache_file = self.check_cache(hash_format, hash_value)
                     if cache_file:
                         # Copy from cache instead of downloading
-                        logger.info(f"Found in cache, copying: {mod.filename}")
+                        # logger.info(f"Found in cache, copying: {mod.filename}")
                         pbar.set_postfix_str(f"🔄 {mod.filename} (from cache)")
 
                         try:
@@ -198,7 +198,7 @@ class CurseForgeDownloader:
                             # Fall through to normal download if cache copy fails
 
                 pbar.set_postfix_str(f"📡 {mod.name}")
-                logger.info(f"Getting download info for: {mod.name}")
+                # logger.info(f"Getting download info for: {mod.name}")
 
                 # Get download URL
                 download_url = await self.get_download_url(project_id, file_id)
