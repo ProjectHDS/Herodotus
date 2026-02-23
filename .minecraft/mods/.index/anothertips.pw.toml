@@ -1,0 +1,17 @@
+filename = 'anothertips-1.0.5.jar'
+name = 'AnotherTips'
+side = ''
+x-prismlauncher-loaders = [ 'forge' ]
+x-prismlauncher-mc-versions = [ '1.12.2' ]
+x-prismlauncher-release-type = 'release'
+x-prismlauncher-version-number = 'anothertips-1.0.5.jar'
+
+[download]
+hash = 'a2f18d5f0fe5eb16ddd9708d75a0816961e07330'
+hash-format = 'sha1'
+mode = 'metadata:curseforge'
+url = ''
+
+[update.curseforge]
+file-id = 7646417
+project-id = 1209235

@@ -1,0 +1,17 @@
+filename = 'fluxloading-1.4.1.jar'
+name = 'FluxLoading'
+side = ''
+x-prismlauncher-loaders = [ 'forge' ]
+x-prismlauncher-mc-versions = [ '1.12.2' ]
+x-prismlauncher-release-type = 'release'
+x-prismlauncher-version-number = 'fluxloading-1.4.1.jar'
+
+[download]
+hash = '4af90cf92193fee70d8128c41bbc14d70c85277b'
+hash-format = 'sha1'
+mode = 'metadata:curseforge'
+url = ''
+
+[update.curseforge]
+file-id = 7601634
+project-id = 1207328
